@@ -1,17 +1,18 @@
 import React from 'react'
-import {ThemeProvider} from "@material-ui/styles";
-import {theme} from 'theme'
 import {Provider} from "react-redux";
-import store from 'redux/store'
+import Board from "./components/Board";
+import store from "./redux/store";
+import {CssBaseline} from "@material-ui/core";
+import Game from "./components/Game";
 
 function App() {
     return (
-        <ThemeProvider theme={theme}>
-            <Provider store={store}>
-                <div className="App">
-                </div>
-            </Provider>
-        </ThemeProvider>
+        <Provider store={store}>
+            <CssBaseline/>
+            <Game>
+                <Board/>
+            </Game>
+        </Provider>
     );
 }
 

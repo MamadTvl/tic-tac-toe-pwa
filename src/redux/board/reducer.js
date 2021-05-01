@@ -14,14 +14,14 @@ const initialState = {
         name: 'player 1',
         score: 0,
         starter: true,
-        image: '', // todo: find image for X and O
+        label: 'x',
         turn: true,
     },
     player2: {
         name: 'robot',
         score: 0,
         starter: false,
-        image: '',
+        label: 'o',
         turn: false,
     },
     difficulty: 'easy',
