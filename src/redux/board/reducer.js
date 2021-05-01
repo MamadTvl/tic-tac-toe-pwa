@@ -1,4 +1,4 @@
-import {MOVE} from "./types";
+import {CHANGE_MODE, CHANGE_TURN, MOVE} from "./types";
 import {FINISH_GAME} from "./types";
 import {CHANGE_PLAYER_STATE} from "./types";
 import {CHANGE_DIFFICULTY} from "./types";
@@ -15,23 +15,23 @@ const initialState = {
         score: 0,
         starter: true,
         label: 'x',
-        turn: true,
     },
     player2: {
         name: 'robot',
         score: 0,
         starter: false,
         label: 'o',
-        turn: false,
     },
     difficulty: 'easy',
+    turn: 1,
+    mode: 'robot',
 }
 
 const reducer = (state = initialState, action) => {
-    switch (action) {
+    switch (action.type) {
         case MOVE: {
             let board = state.board
-            board[action.row][action.column] = action.playerName
+            board[action.row][action.column] = action.label
             return {
                 ...state,
                 board: board
@@ -60,6 +60,18 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 difficulty: action.difficulty,
+            }
+        }
+        case CHANGE_TURN: {
+            return {
+                ...state,
+                turn: action.turn,
+            }
+        }
+        case CHANGE_MODE: {
+            return {
+                ...state,
+                mode: action.mode
             }
         }
         default:

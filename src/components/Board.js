@@ -1,13 +1,25 @@
 import React from 'react'
 import {useSelector, useDispatch} from "react-redux";
 import {useBoardStyle} from "./styles/useBoardStyle";
+import { changeTurn, finishGame, move} from "../redux";
+import {robotPlayEasy, robotPlayHard} from "../functions/robot/robotPlay";
+import {getTheWinner} from "../functions/win";
 
 const Board = () => {
     const classes = useBoardStyle()
-    const board = useSelector((state) => {
-        return state.board
+    const {
+        board,
+        player1,
+        player2,
+        gameFinished,
+        difficulty,
+        turn,
+        mode
+    } = useSelector((state) => {
+        return state
     })
     const dispatch = useDispatch()
+
     const setBorderStyle = (index, row) => {
         switch (index) {
             case 0:
@@ -51,6 +63,53 @@ const Board = () => {
         }
     }
 
+    const playWithRobot = (row, column) => {
+        dispatch(move(row, column, player1.label))
+        const winner = getTheWinner(board)
+        if (winner !== -1) { // win or equal
+            dispatch(finishGame())
+        }
+        dispatch(changeTurn(2))
+        if (difficulty === 'easy') {
+            const [robotRow, robotCol] = robotPlayEasy(board)
+            if (robotRow !== -1 || robotCol !== -1) {
+                setTimeout(() => {
+                    dispatch(move(robotRow, robotCol, player2.label))
+                    const winner = getTheWinner(board)
+                    if (winner !== -1) { //win or equal
+                        dispatch(finishGame())
+                    }
+                    dispatch(changeTurn(1))
+                }, 500)
+            }
+        } else if (difficulty === 'hard') {
+            robotPlayHard(board)
+        }
+    }
+
+    const play2Player = (row, column) => {
+        if (turn === 1) {
+            dispatch(move(row, column, player1.label))
+            const winner = getTheWinner(board)
+            if (winner === 'equal') {
+                dispatch(finishGame())
+            } else if (winner !== -1) {
+                dispatch(finishGame())
+            }
+            dispatch(changeTurn(2))
+        } else {
+            dispatch(move(row, column, player2.label))
+            const winner = getTheWinner(board)
+            if (winner === 'equal') {
+                dispatch(finishGame())
+            } else if (winner !== -1) {
+                dispatch(finishGame())
+            }
+            dispatch(changeTurn(1))
+        }
+    }
+
+
     return (
         <table className={classes.table}>
             <tbody>
@@ -60,6 +119,14 @@ const Board = () => {
                         {
                             row.map((column, columnKey) => (
                                 <td
+                                    onClick={() => {
+                                        if (board[rowKey][columnKey] === 0 && !gameFinished)
+                                            if (mode === 'robot') {
+                                                playWithRobot(rowKey, columnKey)
+                                            } else {
+                                                play2Player(rowKey, columnKey)
+                                            }
+                                    }}
                                     style={setBorderStyle(columnKey, rowKey)}
                                     className={classes.block}
                                     key={columnKey + 1000}
