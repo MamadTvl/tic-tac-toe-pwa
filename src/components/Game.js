@@ -28,7 +28,7 @@ const Game = (props) => {
                 Tic Tac Toe
             </h1>
             <h3>{turn === 1 && player1.name}{turn === 2 && player2.name} turn</h3>
-            <div>
+            <div style={{marginBottom: 16}}>
                 <span>
                     Difficulty :
                 </span>
@@ -63,6 +63,10 @@ const Game = (props) => {
             {
                 props.children
             }
+            <footer>
+                <span>{player1.winner && 'player 1 win'}</span>
+                <span>{player2.winner && 'player 2 win'}</span>
+            </footer>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import {useSelector, useDispatch} from "react-redux";
 import {useBoardStyle} from "./styles/useBoardStyle";
-import { changeTurn, finishGame, move} from "../redux";
+import {changePlayerState, changeTurn, finishGame, move} from "../redux";
 import {robotPlayEasy, robotPlayHard} from "../functions/robot/robotPlay";
 import {getTheWinner} from "../functions/win";
 
@@ -63,27 +63,42 @@ const Board = () => {
         }
     }
 
+    const addWinner = (player, position) => {
+        const details = player === 'player1' ? player1 : player2
+        dispatch(changePlayerState(player, {
+            ...details,
+            winner: true
+        }))
+    }
+
     const playWithRobot = (row, column) => {
         dispatch(move(row, column, player1.label))
         const winner = getTheWinner(board)
         if (winner !== -1) { // win or equal
             dispatch(finishGame())
-        }
-        dispatch(changeTurn(2))
-        if (difficulty === 'easy') {
-            const [robotRow, robotCol] = robotPlayEasy(board)
-            if (robotRow !== -1 || robotCol !== -1) {
-                setTimeout(() => {
-                    dispatch(move(robotRow, robotCol, player2.label))
-                    const winner = getTheWinner(board)
-                    if (winner !== -1) { //win or equal
-                        dispatch(finishGame())
-                    }
-                    dispatch(changeTurn(1))
-                }, 500)
+            if (winner !== 'equal') {
+                addWinner('player1', winner)
             }
-        } else if (difficulty === 'hard') {
-            robotPlayHard(board)
+        } else {
+            dispatch(changeTurn(2))
+            if (difficulty === 'easy') {
+                const [robotRow, robotCol] = robotPlayEasy(board)
+                if (robotRow !== -1 || robotCol !== -1) {
+                    setTimeout(() => {
+                        dispatch(move(robotRow, robotCol, player2.label))
+                        const winner = getTheWinner(board)
+                        if (winner !== -1) { //win or equal
+                            dispatch(finishGame())
+                            if (winner !== 'equal') {
+                                addWinner('player2', winner)
+                            }
+                        }
+                        dispatch(changeTurn(1))
+                    }, 500)
+                }
+            } else if (difficulty === 'hard') {
+                robotPlayHard(board)
+            }
         }
     }
 
@@ -95,6 +110,7 @@ const Board = () => {
                 dispatch(finishGame())
             } else if (winner !== -1) {
                 dispatch(finishGame())
+                addWinner('player1', winner)
             }
             dispatch(changeTurn(2))
         } else {
@@ -104,6 +120,7 @@ const Board = () => {
                 dispatch(finishGame())
             } else if (winner !== -1) {
                 dispatch(finishGame())
+                addWinner('player2', winner)
             }
             dispatch(changeTurn(1))
         }

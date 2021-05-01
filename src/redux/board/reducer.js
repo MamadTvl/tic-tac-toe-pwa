@@ -12,13 +12,13 @@ const initialState = {
     gameFinished: false,
     player1: {
         name: 'player 1',
-        score: 0,
+        winner: false,
         starter: true,
         label: 'x',
     },
     player2: {
         name: 'robot',
-        score: 0,
+        winner: false,
         starter: false,
         label: 'o',
     },
