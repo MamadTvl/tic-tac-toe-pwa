@@ -1,9 +1,10 @@
 import React from 'react'
 import {useGameStyle} from "./styles/useGameStyle";
 import {useDispatch, useSelector} from "react-redux";
-import {Button, MenuItem, NativeSelect, Select} from "@material-ui/core";
+import {Button, MenuItem, NativeSelect, Select, Typography} from "@material-ui/core";
 import {changeMode, changeDifficulty, restartGame} from "../redux/board/action";
 import {Input} from "./Input";
+import {CodeIcon, HeartIcon} from "./icon";
 
 const Game = (props) => {
     const classes = useGameStyle()
@@ -86,6 +87,25 @@ const Game = (props) => {
                 >
                     Restart
                 </Button>
+                <Typography
+                    className={classes.github}
+                >
+                    <a
+                        href={'https://github.com/MamadTvl/tic-tac-toe-pwa'}
+                        target={'_blank'}
+                    >
+
+                        <CodeIcon/>
+                    </a>
+                    with
+                    <HeartIcon/>
+                    By
+                    <a
+                        href={'https://github.com/MamadTvl'}
+                        target={'_blank'}
+                        style={{margin: '0 8px'}}
+                    >MamadTvl</a>
+                </Typography>
             </footer>
         </div>
     )

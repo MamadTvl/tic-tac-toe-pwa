@@ -18,5 +18,12 @@ export const useGameStyle = makeStyles((theme) => ({
         flexDirection: 'column-reverse',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    github: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignContent: 'center',
+        alignItems: 'center',
+        marginTop: 8
     }
 }), {index: 1})
