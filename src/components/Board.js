@@ -78,6 +78,9 @@ const Board = () => {
             dispatch(finishGame())
             if (winner !== 'equal') {
                 addWinner('player1', winner)
+            } else {
+                addWinner('player1', winner)
+                addWinner('player2', winner)
             }
         } else {
             dispatch(changeTurn(2))
@@ -86,7 +89,6 @@ const Board = () => {
                 [robotRow, robotCol] = robotPlayEasy(board)
             } else {
                 [robotRow, robotCol] = robotPlayHard(board)
-                console.log(robotRow, robotCol)
             }
             if (robotRow !== -1 || robotCol !== -1) {
                 setTimeout(() => {
@@ -95,6 +97,9 @@ const Board = () => {
                     if (winner !== -1) { //win or equal
                         dispatch(finishGame())
                         if (winner !== 'equal') {
+                            addWinner('player2', winner)
+                        } else {
+                            addWinner('player1', winner)
                             addWinner('player2', winner)
                         }
                     }
@@ -110,6 +115,8 @@ const Board = () => {
             const winner = getTheWinner(board)
             if (winner === 'equal') {
                 dispatch(finishGame())
+                addWinner('player1', winner)
+                addWinner('player2', winner)
             } else if (winner !== -1) {
                 dispatch(finishGame())
                 addWinner('player1', winner)
@@ -120,6 +127,8 @@ const Board = () => {
             const winner = getTheWinner(board)
             if (winner === 'equal') {
                 dispatch(finishGame())
+                addWinner('player1', winner)
+                addWinner('player2', winner)
             } else if (winner !== -1) {
                 dispatch(finishGame())
                 addWinner('player2', winner)

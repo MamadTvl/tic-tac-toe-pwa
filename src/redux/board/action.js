@@ -1,4 +1,4 @@
-import {CHANGE_MODE, MOVE} from "./types";
+import {CHANGE_MODE, MOVE, RESTART_GAME} from "./types";
 import {FINISH_GAME} from "./types";
 import {CHANGE_PLAYER_STATE} from "./types";
 import {CHANGE_DIFFICULTY} from "./types";
@@ -45,5 +45,11 @@ export const changeMode = (mode) => {
     return {
         type: CHANGE_MODE,
         mode: mode,
+    }
+}
+
+export const restartGame = () => {
+    return {
+        type: RESTART_GAME,
     }
 }

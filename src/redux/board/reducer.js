@@ -1,4 +1,4 @@
-import {CHANGE_MODE, CHANGE_TURN, MOVE} from "./types";
+import {CHANGE_MODE, CHANGE_TURN, MOVE, RESTART_GAME} from "./types";
 import {FINISH_GAME} from "./types";
 import {CHANGE_PLAYER_STATE} from "./types";
 import {CHANGE_DIFFICULTY} from "./types";
@@ -72,6 +72,31 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 mode: action.mode
+            }
+        }
+        case RESTART_GAME: {
+            return {
+                board: [
+                    [0, 0, 0],
+                    [0, 0, 0],
+                    [0, 0, 0],
+                ],
+                gameFinished: false,
+                player1: {
+                    ...state.player1,
+                    winner: false,
+                    starter: true,
+                    label: 'x',
+                },
+                player2: {
+                    ...state.player2,
+                    winner: false,
+                    starter: false,
+                    label: 'o',
+                },
+                difficulty: 'easy',
+                turn: 1,
+                mode: 'robot',
             }
         }
         default:
