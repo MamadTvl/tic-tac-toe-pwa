@@ -81,23 +81,25 @@ const Board = () => {
             }
         } else {
             dispatch(changeTurn(2))
+            let [robotRow, robotCol] = [-1, -1]
             if (difficulty === 'easy') {
-                const [robotRow, robotCol] = robotPlayEasy(board)
-                if (robotRow !== -1 || robotCol !== -1) {
-                    setTimeout(() => {
-                        dispatch(move(robotRow, robotCol, player2.label))
-                        const winner = getTheWinner(board)
-                        if (winner !== -1) { //win or equal
-                            dispatch(finishGame())
-                            if (winner !== 'equal') {
-                                addWinner('player2', winner)
-                            }
+                [robotRow, robotCol] = robotPlayEasy(board)
+            } else {
+                [robotRow, robotCol] = robotPlayHard(board)
+                console.log(robotRow, robotCol)
+            }
+            if (robotRow !== -1 || robotCol !== -1) {
+                setTimeout(() => {
+                    dispatch(move(robotRow, robotCol, player2.label))
+                    const winner = getTheWinner(board)
+                    if (winner !== -1) { //win or equal
+                        dispatch(finishGame())
+                        if (winner !== 'equal') {
+                            addWinner('player2', winner)
                         }
-                        dispatch(changeTurn(1))
-                    }, 500)
-                }
-            } else if (difficulty === 'hard') {
-                robotPlayHard(board)
+                    }
+                    dispatch(changeTurn(1))
+                }, 500)
             }
         }
     }
@@ -139,7 +141,7 @@ const Board = () => {
                                     onClick={() => {
                                         if (board[rowKey][columnKey] === 0 && !gameFinished)
                                             if (mode === 'robot') {
-                                                playWithRobot(rowKey, columnKey)
+                                                turn === 1 && playWithRobot(rowKey, columnKey)
                                             } else {
                                                 play2Player(rowKey, columnKey)
                                             }

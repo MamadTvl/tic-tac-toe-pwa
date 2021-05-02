@@ -10,7 +10,7 @@ export const useBoardStyle = makeStyles((theme) => ({
     block: {
         width: '100px',
         height: '100px',
-        borderColor: '#607D8B',
+        color: '#607D8B',
         textAlign: 'center',
     }
 
