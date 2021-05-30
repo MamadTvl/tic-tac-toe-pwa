@@ -145,7 +145,123 @@ export const robotPlayHard = (board) => {
 /**
  * min max algorithm
  * **/
+let HUMAN = -1
+let ROBOT = +1
+
+
+/* This function tests if a specific player wins */
+const gameOver = (state, player) => {
+    const win_state = [
+        [state[0][0], state[0][1], state[0][2]],
+        [state[1][0], state[1][1], state[1][2]],
+        [state[2][0], state[2][1], state[2][2]],
+        [state[0][0], state[1][0], state[2][0]],
+        [state[0][1], state[1][1], state[2][1]],
+        [state[0][2], state[1][2], state[2][2]],
+        [state[0][0], state[1][1], state[2][2]],
+        [state[2][0], state[1][1], state[0][2]],
+    ];
+
+    for (let i = 0; i < 8; i++) {
+        let line = win_state[i];
+        let filled = 0;
+        for (let j = 0; j < 3; j++) {
+            if (line[j] === player)
+                filled++;
+        }
+        if (filled === 3)
+            return true;
+    }
+    return false;
+}
+
+/* This function test if the human or computer wins */
+const gameOverAll = (state) => {
+    return gameOver(state, HUMAN) || gameOver(state, ROBOT);
+}
+
+//heuristic evaluation of state
+const evaluate = (state) => {
+    let score
+    if (gameOver(state, ROBOT)) {
+        score = +1;
+    }
+    else if (gameOver(state, HUMAN)) {
+        score = -1;
+    } else {
+        score = 0;
+    }
+
+    return score;
+}
+
+const emptyCells = (state) => {
+    const cells = [];
+    for (let x = 0; x < 3; x++) {
+        for (let y = 0; y < 3; y++) {
+            if (state[x][y] === 0)
+                cells.push([x, y]);
+        }
+    }
+
+    return cells;
+}
+
+const minmax = (state, depth, player) => {
+    let best
+
+    if (player === ROBOT) {
+        best = [-1, -1, -1000]
+    } else {
+        best = [-1, -1, +1000]
+    }
+    if (depth === 0 || gameOverAll(state)) {
+        let score = evaluate(state)
+        return [-1, -1, score]
+    }
+
+    emptyCells(state).forEach((cell) => {
+        let x = cell[0]
+        let y = cell[1]
+        state[x][y] = player
+        let score = minmax(state, depth - 1, -player)
+        state[x][y] = 0
+        score[0] = x
+        score[1] = y
+
+        if (player === ROBOT) {
+            if (score[2] > best[2])
+                best = score
+        }
+        else {
+            if (score[2] < best[2])
+                best = score
+        }
+    })
+
+    return best
+}
 
 export const robotPlayImpossible = (board) => {
+    const newBoard = JSON.parse(JSON.stringify(board))
+    for (let i = 0; i < newBoard.length; i++) {
+        for (let j = 0; j < newBoard[i].length; j++) {
+            if (newBoard[i][j] === 'x'){
+                newBoard[i][j] = HUMAN
+            } else if (newBoard[i][j] === 'o'){
+                newBoard[i][j] = ROBOT
+            }
+        }
+    }
+    let move
+    move = minmax(
+        newBoard,
+        emptyCells(newBoard).length,
+        ROBOT,
+    )
+    if (move[0] === -1 || move[1] === -1){
+        return robotPlayEasy(board)
+    }
+    return move
 
 }

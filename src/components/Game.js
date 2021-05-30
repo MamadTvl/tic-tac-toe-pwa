@@ -43,6 +43,9 @@ const Game = (props) => {
                         <option value={'hard'}>
                             hard
                         </option>
+                        <option value={'impossible'}>
+                            impossible (minmax algorithm)
+                        </option>
                     </NativeSelect>
                 </div>
 
@@ -92,7 +95,7 @@ const Game = (props) => {
                 >
                     <a
                         href={'https://github.com/MamadTvl/tic-tac-toe-pwa'}
-                        rel={'noopener'}
+                        rel={'noreferrer'}
                         target={'_blank'}
                     >
 
@@ -104,7 +107,7 @@ const Game = (props) => {
                     <a
                         href={'https://github.com/MamadTvl'}
                         target={'_blank'}
-                        rel={'noopener'}
+                        rel={'noreferrer'}
                         style={{margin: '0 8px'}}
                     >MamadTvl</a>
                 </Typography>

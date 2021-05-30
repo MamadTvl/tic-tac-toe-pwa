@@ -76,6 +76,7 @@ const reducer = (state = initialState, action) => {
         }
         case RESTART_GAME: {
             return {
+                ...state,
                 board: [
                     [0, 0, 0],
                     [0, 0, 0],
@@ -94,9 +95,7 @@ const reducer = (state = initialState, action) => {
                     starter: false,
                     label: 'o',
                 },
-                difficulty: 'easy',
                 turn: 1,
-                mode: 'robot',
             }
         }
         default:

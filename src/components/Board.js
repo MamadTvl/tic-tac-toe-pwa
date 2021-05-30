@@ -2,7 +2,7 @@ import React from 'react'
 import {useSelector, useDispatch} from "react-redux";
 import {useBoardStyle} from "./styles/useBoardStyle";
 import {changePlayerState, changeTurn, finishGame, move} from "../redux";
-import {robotPlayEasy, robotPlayHard} from "../functions/robot/robotPlay";
+import {robotPlayEasy, robotPlayHard, robotPlayImpossible} from "../functions/robot/robotPlay";
 import {getTheWinner} from "../functions/win";
 
 const Board = () => {
@@ -87,9 +87,12 @@ const Board = () => {
             let [robotRow, robotCol] = [-1, -1]
             if (difficulty === 'easy') {
                 [robotRow, robotCol] = robotPlayEasy(board)
-            } else {
+            } else if (difficulty === 'hard') {
                 [robotRow, robotCol] = robotPlayHard(board)
+            } else if (difficulty === 'impossible'){
+                [robotRow, robotCol] = robotPlayImpossible(board)
             }
+
             if (robotRow !== -1 || robotCol !== -1) {
                 setTimeout(() => {
                     dispatch(move(robotRow, robotCol, player2.label))
