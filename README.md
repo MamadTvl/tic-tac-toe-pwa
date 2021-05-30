@@ -14,12 +14,12 @@ if there is no option pick random block
 
 you can add it to your phone home screen and play
 
-see demo : https://tik-tak-game.netlify.app/
 
 ### impossible
 
 using min-max algorithm
 
+see demo : https://tik-tak-game.netlify.app/
 ## Available Scripts
 
 In the project directory, you can run:
