@@ -141,3 +141,11 @@ export const robotPlayHard = (board) => {
         return robotPlayEasy(board)
     }
 }
+
+/**
+ * min max algorithm
+ * **/
+
+export const robotPlayImpossible = (board) => {
+
+}

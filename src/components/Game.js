@@ -92,6 +92,7 @@ const Game = (props) => {
                 >
                     <a
                         href={'https://github.com/MamadTvl/tic-tac-toe-pwa'}
+                        rel={'noopener'}
                         target={'_blank'}
                     >
 
@@ -103,6 +104,7 @@ const Game = (props) => {
                     <a
                         href={'https://github.com/MamadTvl'}
                         target={'_blank'}
+                        rel={'noopener'}
                         style={{margin: '0 8px'}}
                     >MamadTvl</a>
                 </Typography>

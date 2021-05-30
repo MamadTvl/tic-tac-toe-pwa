@@ -2,7 +2,7 @@
 
 simple tic-tac-toe game 
 
-has two different difficulty (easy, hard)
+has three different difficulty (easy, hard, impossible)
 
 ### easy
 robot choose random blocks
@@ -16,11 +16,18 @@ you can add it to your phone home screen and play
 
 see demo : https://tik-tak-game.netlify.app/
 
+### impossible
+
+using min-max algorithm
+
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `npm install or yarn install`
+install the npm packages 
+
+### `npm start or yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -28,7 +35,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `yarn build`
+### `npm run build or yarn build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
