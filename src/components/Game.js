@@ -1,7 +1,7 @@
 import React from 'react'
 import {useGameStyle} from "./styles/useGameStyle";
 import {useDispatch, useSelector} from "react-redux";
-import {Button, MenuItem, NativeSelect, Select, Typography} from "@material-ui/core";
+import {Button, NativeSelect, Typography} from "@material-ui/core";
 import {changeMode, changeDifficulty, restartGame} from "../redux/board/action";
 import {Input} from "./Input";
 import {CodeIcon, HeartIcon} from "./icon";
@@ -9,10 +9,8 @@ import {CodeIcon, HeartIcon} from "./icon";
 const Game = (props) => {
     const classes = useGameStyle()
     const {
-        board,
         player1,
         player2,
-        gameFinished,
         difficulty,
         turn,
         mode
@@ -109,7 +107,18 @@ const Game = (props) => {
                         target={'_blank'}
                         rel={'noreferrer'}
                         style={{margin: '0 8px'}}
-                    >MamadTvl</a>
+                    >
+                        MamadTvl
+                    </a>
+                    &
+                    <a
+                        href={'https://github.com/mahdis-ai'}
+                        target={'_blank'}
+                        rel={'noreferrer'}
+                        style={{margin: '0 8px'}}
+                    >
+                        Mahdis Abedi
+                    </a>
                 </Typography>
             </footer>
         </div>
