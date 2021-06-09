@@ -20,6 +20,9 @@ you can add it to your phone home screen and play
 using min-max algorithm
 
 see demo : https://tik-tak-game.netlify.app/
+
+also the native version is here : https://github.com/MamadTvl/TicTacToe-React-Native
+
 ## Available Scripts
 
 In the project directory, you can run:
