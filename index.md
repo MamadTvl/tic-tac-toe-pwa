@@ -1,37 +1,81 @@
-## Welcome to GitHub Pages
+# Tic Tac Toe Game
 
-You can use the [editor on GitHub](https://github.com/MamadTvl/tic-tac-toe-pwa/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+simple tic-tac-toe game 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+has three different difficulty (easy, hard, impossible)
 
-### Markdown
+### easy
+robot choose random blocks
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### hard
+trying to win the game or stop the other player to win
 
-```markdown
-Syntax highlighted code block
+if there is no option pick random block
 
-# Header 1
-## Header 2
-### Header 3
+you can add it to your phone home screen and play
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+### impossible
 
-**Bold** and _Italic_ and `Code` text
+using min-max algorithm
 
-[Link](url) and ![Image](src)
-```
+see demo : https://tik-tak-game.netlify.app/
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+also the native version is here : https://github.com/MamadTvl/TicTacToe-React-Native
 
-### Jekyll Themes
+## Available Scripts
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/MamadTvl/tic-tac-toe-pwa/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+In the project directory, you can run:
 
-### Support or Contact
+### `npm install or yarn install`
+install the npm packages 
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### `npm start or yarn start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
+
+### `npm run build or yarn build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `yarn build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+Mohammad Tavallai and Mahdis Abedi
