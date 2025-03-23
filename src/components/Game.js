@@ -110,15 +110,6 @@ const Game = (props) => {
                     >
                         MamadTvl
                     </a>
-                    &
-                    <a
-                        href={'https://github.com/mahdis-ai'}
-                        target={'_blank'}
-                        rel={'noreferrer'}
-                        style={{margin: '0 8px'}}
-                    >
-                        Mahdis Abedi
-                    </a>
                 </Typography>
             </footer>
         </div>
